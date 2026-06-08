@@ -10,6 +10,8 @@ public class StudentGradeManagementSystem {
             System.out.println("\n--- Student Grade Management System ---");
             System.out.println("1. Add Student");
             System.out.println("2. Display All Students");
+            System.out.println("3. Search Student by ID");
+            System.out.println("4. Calculate Class Average");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             
@@ -19,6 +21,8 @@ public class StudentGradeManagementSystem {
             switch (choice) {
                 case 1: addStudent(); break;
                 case 2: displayStudents(); break;
+                case 3: searchStudent(); break;
+                case 4: calculateAverage(); break;
                 case 5: 
                     System.out.println("Exiting program...");
                     System.exit(0);
@@ -47,7 +51,7 @@ public class StudentGradeManagementSystem {
                 }
             } else {
                 System.out.println("Error: Please enter a valid number");
-                input.nextLine(); 
+                input.nextLine();
             }
         }
         
@@ -64,5 +68,30 @@ public class StudentGradeManagementSystem {
         for (Student s : students) {
             System.out.println("ID: " + s.getStudentId() + ", Name: " + s.getName() + ", Marks: " + s.getMarks() + ", Grade: " + s.calculateGrade());
         }
+    }
+
+    static void searchStudent() {
+        System.out.print("Enter Student ID to search: ");
+        String searchId = input.nextLine();
+        for (Student s : students) {
+            if (s.getStudentId().equals(searchId)) {
+                System.out.println("Found: ID: " + s.getStudentId() + ", Name: " + s.getName() + ", Marks: " + s.getMarks() + ", Grade: " + s.calculateGrade());
+                return;
+            }
+        }
+        System.out.println("Student not found.");
+    }
+
+    static void calculateAverage() {
+        if (students.isEmpty()) {
+            System.out.println("No students to calculate average.");
+            return;
+        }
+        double total = 0;
+        for (Student s : students) {
+            total += s.getMarks();
+        }
+        double avg = total / students.size();
+        System.out.printf("Class Average: %.2f%n", avg);
     }
 }
