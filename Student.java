@@ -1,13 +1,11 @@
 public class Student {
-
     private String studentId;
-    private String studentName;
+    private String name;
     private double marks;
 
-    // Constructor
-    public Student(String studentId, String studentName, double marks) {
+    public Student(String studentId, String name, double marks) {
         this.studentId = studentId;
-        this.studentName = studentName;
+        this.name = name;
         this.marks = marks;
     }
 
@@ -15,18 +13,19 @@ public class Student {
         return studentId;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getName() {
+        return name;
     }
 
     public double getMarks() {
         return marks;
     }
 
-    public void displayStudent() {
-        System.out.println("ID: " + studentId);
-        System.out.println("Name: " + studentName);
-        System.out.println("Marks: " + marks);
-        System.out.println("-------------------");
+    public String calculateGrade() {
+        if (marks >= 90) return "A";
+        else if (marks >= 75) return "B";
+        else if (marks >= 60) return "C";
+        else if (marks >= 50) return "D";
+        else return "F";
     }
 }
